@@ -12,6 +12,10 @@ La lista deve essere esportabile in formato PDF oppure CSV.
 
 **Team GDPR**
 
+Legge e rilegge la normativa per capirne gli adempimenti.
+
+https://eur-lex.europa.eu/legal-content/IT/TXT/HTML/?uri=CELEX%3A32016R0679&from=EN
+
 Crea il file "quiz_it.json" e il file "fulfillments_it.json".
 
 **Gli schemi JSON**
@@ -31,7 +35,7 @@ Il formato del file è:
     answers: [
         {
             value: "Sì.",
-            fullfilment: 1,
+            fulfillment: 1,
             question: 2
         },
         {
@@ -44,7 +48,7 @@ Il formato del file è:
      answers: [
          {
              value: "Sì.",
-             fullfilment: 2
+             fulfillment: 2
          },
          {
              value: "No.",
