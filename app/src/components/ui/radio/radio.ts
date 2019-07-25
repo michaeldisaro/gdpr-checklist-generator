@@ -1,20 +1,11 @@
 import { Component, Prop, Vue } from 'vue-property-decorator';
-import * as questionsJson from '../../../data/it/questions.json';
-import * as answersJson from '../../../data/it/answers.json';
+import Ui from "@/components/ui/ui";
 
 @Component
-export default class Radio extends Vue {
-  @Prop() question!: string;
+export default class RadioInput extends Ui {
+  @Prop() selected;
 
-  @Prop() answers!: object[];
-
-  getQuestionText(id: string): string {
-    const q = questionsJson as {[key: string]: any};
-    return q.default[id];
-  }
-
-  getAnswerText(id: string): string {
-    const a = answersJson as {[key: string]: any};
-    return a.default[id];
+  test(): void {
+    console.log("checking Radio... TODO:" + this.selected);
   }
 }

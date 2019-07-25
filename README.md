@@ -29,34 +29,30 @@ Il formato del file è:
 ```
 [
     {
+        "type": "Radio",
         "question": 1,
-        "answer": {
-            "type": "radio",
-            "answers": [
-                {
-                    "id": 1,
-                    "fulfillment": 1,
-                    "question": 2
-                },
-                {
-                    "id": 2
-                }
-            ]
-        }
+        "answers": [
+            {
+                "id": 1,
+                "fulfillment": 1,
+                "question": 2
+            },
+            {
+                "id": 2
+            }
+        ]
     },
     {
+        "type": "Text",
         "question": 2,
-        "answer": {
-            "type": "text",
-            "answers": [
-                {
-                    "value": ">=250",
-                    "fulfillment": 2
-                }
-            ]
-        }
+        "answers": [
+            {
+                "value": ">=250",
+                "fulfillment": 2
+            }
+        ]
     },
-    ...
+...
 ]
 ```
 
