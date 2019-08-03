@@ -1,19 +1,19 @@
-[
-    {
+{
+    "1": {
         "type": "Radio",
         "question": 1,
         "answers": [
             {
                 "id": 1,
                 "fulfillment": 1,
-                "question": 2
+                "question": 1
             },
             {
                 "id": 2
             }
         ]
     },
-    {
+    "2": {
         "type": "Text",
         "question": 2,
         "answers": [
@@ -23,4 +23,4 @@
             }
         ]
     }
-]
+}

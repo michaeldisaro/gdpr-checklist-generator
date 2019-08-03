@@ -1,14 +1,24 @@
-import * as questionsJson from './it/questions.json';
-import * as answersJson from './it/answers.json';
+import quiz from '../data/quiz.json';
+import questions  from './it/questions.json';
+import answers  from './it/answers.json';
 
 export default class DataManager {
+  static getQuiz(): {[key:string]: any}{
+    return quiz;
+  }
+
+  static getQuestion(id: string): {[key:string]: any}{
+    const qz = quiz as {[key: string]: any};
+    return qz[id];
+  }
+
   static getQuestionText(id: string): string {
-    const q = questionsJson as {[key: string]: any};
-    return q.default[id];
+    const q = questions as {[key: string]: any};
+    return q[id];
   }
 
   static getAnswerText(id: string): string {
-    const a = answersJson as {[key: string]: any};
-    return a.default[id];
+    const a = answers as {[key: string]: any};
+    return a[id];
   }
 }

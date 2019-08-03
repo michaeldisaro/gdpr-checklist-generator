@@ -1,31 +1,15 @@
-import {Component, Prop, Vue} from 'vue-property-decorator';
-import * as quiz from '../data/quiz.json';
-import RadioInput from './ui/radio/Radio.vue';
-import TextInput from "./ui/text/Text.vue";
+import { Component, Prop, Vue } from 'vue-property-decorator';
+import DataManager from "@/data/DataManager";
+import UiFactory from '@/components/ui/ui-factory';
 
-@Component({
-  components: {
-    RadioInput,
-    TextInput,
-  },
-})
+@Component
 export default class Quiz extends Vue {
   start(): void {
-    const ui = {
-      Radio: RadioInput,
-      Text: TextInput,
-    };
-    const q = quiz.default;
-    for (let data in q) {
+    const q = DataManager.getQuiz();
+    for (const data in q) {
+      if (!q.hasOwnProperty(data)) continue;
       const d = q[data];
-      const Component = Vue.extend(ui[d.type]);
-      const instance = new Component({
-        propsData: {
-          data: d
-        }
-      });
-      instance.$mount();
-      this.$el.appendChild(instance.$el);
+      this.$el.appendChild(UiFactory.instance(d));
     }
   }
 
