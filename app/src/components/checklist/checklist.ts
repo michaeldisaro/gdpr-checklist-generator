@@ -1,6 +1,17 @@
-import { Component, Vue } from 'vue-property-decorator';
+import {
+  Component, Vue, Prop, Watch,
+} from 'vue-property-decorator';
+import { getModule } from 'vuex-module-decorators';
+import AppStore from '@/store/app-store';
+import { mapGetters } from 'vuex';
 
-@Component
+const appStore = getModule(AppStore);
+
+@Component({
+  computed: mapGetters({
+    getFf: 'appStore/ffments'
+  })
+})
 export default class Checklist extends Vue {
 
 }

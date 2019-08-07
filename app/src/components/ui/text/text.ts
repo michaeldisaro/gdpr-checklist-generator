@@ -12,9 +12,9 @@ export default class TextInput extends Ui {
       const answer = this.question.answers[idx];
       const check = (this.userText || '0') + answer.value;
       if (safeEval(check)) {
-        this.nested(answer.question);
+        this.nest(answer.question);
       } else {
-        this.nested();
+        this.nest();
       }
     }
   }

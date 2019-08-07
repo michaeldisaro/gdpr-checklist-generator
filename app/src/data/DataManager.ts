@@ -4,35 +4,35 @@ import quiz from './quiz.json';
 import questions from './it/questions.json';
 import answers from './it/answers.json';
 import fulfillments from './it/fulfillments.json';
-import Question from '@/models/question';
-import Answer from '@/models/answer';
-import Fulfillment from '@/models/fulfillment';
+import QuestionModel from '@/models/question-model';
+import AnswerModel from '@/models/answer-model';
+import FulfillmentModel from '@/models/fulfillment-model';
 
 const appStore = getModule(AppStore);
 
 export default class DataManager {
   static prepareQuiz() {
-    Object.values(quiz).forEach((d) => {
-      const question = new Question();
-      question.id = d.question;
-      question.type = d.type;
-      question.text = this.getQuestionText(d.question);
-      question.dependsOn = d.dependsOn || [];
-      Object.values(d.answers).forEach((a) => {
-        const answer = new Answer();
-        answer.id = a.id || 0;
-        answer.text = this.getAnswerText(a.id) || '';
-        answer.question = a.question || null;
-        answer.value = a.value || '';
-        if (a.fulfillment) {
-          const fulfillmentModel = new Fulfillment();
-          fulfillmentModel.id = a.fulfillment;
-          fulfillmentModel.text = this.getFulfillmentText(a.fulfillment);
-          answer.fulfillment = fulfillmentModel;
+    Object.values(quiz).forEach((data) => {
+      const q = new QuestionModel();
+      q.id = data.question;
+      q.type = data.type;
+      q.text = this.getQuestionText(data.question);
+      q.dependsOn = data.dependsOn || [];
+      Object.values(data.answers).forEach((answer) => {
+        const a = new AnswerModel();
+        a.id = answer.id || 0;
+        a.text = this.getAnswerText(answer.id) || '';
+        a.question = answer.question || null;
+        a.value = answer.value || '';
+        if (answer.fulfillment) {
+          const f = new FulfillmentModel();
+          f.id = <number>answer.fulfillment;
+          f.text = this.getFulfillmentText(<number>answer.fulfillment);
+          a.fulfillment = f;
         }
-        question.answers.push(answer);
+        q.answers.push(a);
       });
-      appStore.addQuestion(question);
+      appStore.addQuestion(q);
     });
   }
 

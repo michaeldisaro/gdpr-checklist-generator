@@ -1,10 +1,10 @@
 import { Vue } from 'vue-property-decorator';
 import RadioInput from '@/components/ui/radio/Radio.vue';
 import TextInput from '@/components/ui/text/Text.vue';
-import Question from '@/models/question';
+import QuestionModel from '@/models/question-model';
 
 export default class UiFactory {
-  static instance(question: Question): Node {
+  static instance(question: QuestionModel): Node {
     const ui = {
       Radio: RadioInput,
       Text: TextInput,

@@ -1,9 +1,10 @@
 import {
   Module, VuexModule, Mutation, Action,
 } from 'vuex-module-decorators';
-import Fulfillment from '@/components/fulfillment/Fulfillment.vue';
-import Question from '@/models/question';
+import QuestionModel from '@/models/question-model';
 import Store from './store';
+import FulfillmentModel from '@/models/fulfillment-model';
+import Vue from "vue";
 
 @Module({
   dynamic: true,
@@ -12,17 +13,31 @@ import Store from './store';
   namespaced: true,
 })
 export default class AppStore extends VuexModule {
-  quiz: { [key: number]: Question } = {};
+  quiz: { [key: number]: QuestionModel } = {};
 
-  fulfillments: Array<Fulfillment> = [];
+  fulfillments: { [key: number]: FulfillmentModel } = {};
 
-  @Mutation
-  addQuestion(question: Question) {
-    this.quiz[question.id] = question;
+  get ffments() {
+    return this.fulfillments;
   }
 
   @Mutation
-  commitFulfillment(fulfillment: Fulfillment) {
-    this.fulfillments.push(fulfillment);
+  questionMutation(question: QuestionModel) {
+    Vue.set(this.quiz,question.id,question);
+  }
+
+  @Mutation
+  fulfillmentMutation(fulfillment: FulfillmentModel) {
+    Vue.set(this.fulfillments, fulfillment.id, fulfillment);
+  }
+
+  @Action
+  addQuestion(question: QuestionModel) {
+    this.context.commit('questionMutation', question);
+  }
+
+  @Action
+  addFulfillment(fulfillment: FulfillmentModel) {
+    this.context.commit('fulfillmentMutation', fulfillment);
   }
 }
