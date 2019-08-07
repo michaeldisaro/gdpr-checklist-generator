@@ -1,5 +1,5 @@
-{
-    "1": {
+[
+    {
         "type": "Radio",
         "question": 1,
         "answers": [
@@ -13,7 +13,7 @@
             }
         ]
     },
-    "2": {
+    {
         "type": "Text",
         "question": 2,
         "answers": [
@@ -24,7 +24,7 @@
             }
         ]
     },
-    "3": {
+    {
         "type": "Radio",
         "question": 3,
         "dependsOn": [
@@ -41,4 +41,4 @@
             }
         ]
     }
-}
+]

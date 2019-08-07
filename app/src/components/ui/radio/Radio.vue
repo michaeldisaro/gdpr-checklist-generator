@@ -1,10 +1,10 @@
 <template>
   <div class="radio">
     <h3>{{question.text}}</h3>
-    <span v-for="answer in answers">
+    <span v-bind:key="question.id +'-' +answer.id" v-for="answer in question.answers">
       <input type="radio"
              v-bind:name="question.id +'-'+ answer.id"
-             v-bind:value="answers.indexOf(answer)"
+             v-bind:value="question.answers.indexOf(answer)"
              v-model="selected"
              v-on:change="test">
       <label>{{answer.text}}</label>

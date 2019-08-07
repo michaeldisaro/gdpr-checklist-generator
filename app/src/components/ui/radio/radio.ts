@@ -1,13 +1,13 @@
 import { Component, Prop } from 'vue-property-decorator';
 import Ui from '@/components/ui/ui';
+import Answer from '@/models/answer';
 
 @Component
 export default class RadioInput extends Ui {
-  @Prop() selected: string = '';
+  @Prop() selected!: number;
 
   test(): void {
-    const answer = this.data.answers[this.selected];
+    const answer: Answer = this.question.answers[this.selected];
     this.nested(answer.question);
-    this.show(answer.fulfillment);
   }
 }
