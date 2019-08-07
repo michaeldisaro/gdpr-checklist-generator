@@ -1,6 +1,6 @@
-import RadioInput from "@/components/ui/radio/Radio.vue";
-import TextInput from "@/components/ui/text/Text.vue";
-import {Vue} from "vue-property-decorator";
+import { Vue } from 'vue-property-decorator';
+import RadioInput from '@/components/ui/radio/Radio.vue';
+import TextInput from '@/components/ui/text/Text.vue';
 
 export default class UiFactory {
   static instance(question: { [key: string]: any }): Node {
@@ -8,11 +8,10 @@ export default class UiFactory {
       Radio: RadioInput,
       Text: TextInput,
     } as { [key: string]: any };
-    const Component = Vue.extend(ui[question.type]);
-    const instance = new Component({
+    const instance = new ui[question.type]({
       propsData: {
-        data: question
-      }
+        data: question,
+      },
     });
     instance.$mount();
     return instance.$el;

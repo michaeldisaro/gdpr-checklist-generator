@@ -6,7 +6,7 @@
             {
                 "id": 1,
                 "fulfillment": 1,
-                "question": 1
+                "question": 3
             },
             {
                 "id": 2
@@ -18,8 +18,26 @@
         "question": 2,
         "answers": [
             {
-                "value": ">=250",
-                "fulfillment": 2
+                "value": ">=1",
+                "fulfillment": 2,
+                "question": 3
+            }
+        ]
+    },
+    "3": {
+        "type": "Radio",
+        "question": 3,
+        "dependsOn": [
+            1,
+            2
+        ],
+        "answers": [
+            {
+                "id": 1,
+                "fulfillment": 3
+            },
+            {
+                "id": 2
             }
         ]
     }

@@ -1,9 +1,9 @@
 <template>
   <div class="radio">
     <h3>{{question.text}}</h3>
-    <span v-bind:key="answer.id" v-for="answer in answers">
+    <span v-for="answer in answers">
       <input type="radio"
-             v-bind:name="question.id"
+             v-bind:name="question.id +'-'+ answer.id"
              v-bind:value="answers.indexOf(answer)"
              v-model="selected"
              v-on:change="test">
