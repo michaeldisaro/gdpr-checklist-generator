@@ -1,22 +1,18 @@
 import { Component, Vue } from 'vue-property-decorator';
-import { getModule } from 'vuex-module-decorators';
-import AppStore from '@/store/app-store';
 import DataManager from '@/data/DataManager';
-import UiFactory from '@/components/ui/ui-factory';
-import QuestionModel from '@/models/question-model';
+import Ui from "@/components/ui/Ui.vue";
+import { mapGetters } from "vuex";
 
-const appStore = getModule(AppStore);
-
-@Component
+@Component({
+  components: {
+    Ui
+  },
+  computed: mapGetters({
+    quiz: 'appStore/qz',
+  })
+})
 export default class Quiz extends Vue {
   created(): void {
     DataManager.prepareQuiz();
-  }
-
-  mounted(): void {
-    Object.values(appStore.quiz).forEach((q: QuestionModel) => {
-      if (q.dependsOn.length > 0) return;
-      this.$el.appendChild(UiFactory.instance(q));
-    });
   }
 }

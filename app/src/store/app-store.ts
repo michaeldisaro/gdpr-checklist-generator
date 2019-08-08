@@ -4,7 +4,7 @@ import {
 import QuestionModel from '@/models/question-model';
 import Store from './store';
 import FulfillmentModel from '@/models/fulfillment-model';
-import Vue from "vue";
+import Vue from 'vue';
 
 @Module({
   dynamic: true,
@@ -17,27 +17,41 @@ export default class AppStore extends VuexModule {
 
   fulfillments: { [key: number]: FulfillmentModel } = {};
 
-  get ffments() {
+  get qz() {
+    return this.quiz;
+  }
+
+  get ff() {
     return this.fulfillments;
   }
 
   @Mutation
-  questionMutation(question: QuestionModel) {
+  addQuestionMutation(question: QuestionModel) {
     Vue.set(this.quiz,question.id,question);
   }
 
   @Mutation
-  fulfillmentMutation(fulfillment: FulfillmentModel) {
+  addFulfillmentMutation(fulfillment: FulfillmentModel) {
     Vue.set(this.fulfillments, fulfillment.id, fulfillment);
+  }
+
+  @Mutation
+  removeFulfillmentMutation(fulfillment: FulfillmentModel) {
+    Vue.delete(this.fulfillments, fulfillment.id);
   }
 
   @Action
   addQuestion(question: QuestionModel) {
-    this.context.commit('questionMutation', question);
+    this.context.commit('addQuestionMutation', question);
   }
 
   @Action
   addFulfillment(fulfillment: FulfillmentModel) {
-    this.context.commit('fulfillmentMutation', fulfillment);
+    this.context.commit('addFulfillmentMutation', fulfillment);
+  }
+
+  @Action
+  removeFulfillment(fulfillment: FulfillmentModel) {
+    this.context.commit('removeFulfillmentMutation', fulfillment);
   }
 }

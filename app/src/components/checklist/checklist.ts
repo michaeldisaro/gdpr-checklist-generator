@@ -9,7 +9,7 @@ const appStore = getModule(AppStore);
 
 @Component({
   computed: mapGetters({
-    getFf: 'appStore/ffments'
+    fulfillments: 'appStore/ff'
   })
 })
 export default class Checklist extends Vue {

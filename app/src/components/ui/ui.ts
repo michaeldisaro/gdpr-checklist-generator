@@ -1,31 +1,60 @@
-import { Component, Prop, Vue } from 'vue-property-decorator';
+import { Component, Prop, Vue, Watch } from 'vue-property-decorator';
 import { getModule } from 'vuex-module-decorators';
 import AppStore from '@/store/app-store';
 import QuestionModel from '@/models/question-model';
-import UiFactory from '@/components/ui/ui-factory';
+import RadioInput from '@/components/ui/types/radio/Radio.vue';
+import TextInput from '@/components/ui/types/text/Text.vue';
 import FulfillmentModel from '@/models/fulfillment-model';
 
+const md5 = require('md5');
 const appStore = getModule(AppStore);
 
-@Component
+@Component({
+  components: {
+    RadioInput,
+    TextInput,
+    Ui,
+  },
+})
 export default class Ui extends Vue {
   @Prop() question!: QuestionModel;
 
-  uiId: number = Math.random() * (9999 - 1111) + 1111;
+  uiId: number = md5(Math.random() * (999999 - 111111) + 111111);
 
-  nest(questionId?: number) {
-    const container = this.$el.querySelector('.children');
-    if (!container) return;
-    container.innerHTML = '';
-    if (questionId) {
-      container.appendChild(UiFactory.instance(appStore.quiz[questionId]));
-    }
+  nested: { [key: number]: QuestionModel } = {};
+
+  fulfillments: { [key: number]: FulfillmentModel } = {};
+
+  get type(): any {
+    const types = {
+      "Radio": RadioInput,
+      "Text": TextInput,
+    } as { [key: string]: any };
+    return types[this.question.type];
   }
 
-  add(fulfillment?: FulfillmentModel) {
-    if (fulfillment) {
-      fulfillment.parentUiIds.push(this.uiId);
-      appStore.addFulfillment(fulfillment);
-    }
+  created() {
+    this.$on('fulfillmentAdded', this.fulfillmentAdded);
+    this.$on('fulfillmentRemoved', this.fulfillmentRemoved);
+  }
+
+  fulfillmentAdded(f: FulfillmentModel): void {
+    console.log(`adding fulfillment ${f}`);
+    appStore.addFulfillment(f);
+    Vue.set(this.fulfillments, f.id, f);
+  }
+
+  fulfillmentRemoved(f: FulfillmentModel): void {
+    console.log(`removing fulfillment ${f}`);
+    appStore.removeFulfillment(f);
+    Vue.delete(this.fulfillments, f.id);
+  }
+
+  beforeDestroy() {
+    console.log(`destroying ${this.uiId}`);
+    Object.values(this.fulfillments).forEach((v: FulfillmentModel) => {
+      console.log(`removing fulfillment ${v.id}`);
+      appStore.removeFulfillment(v);
+    });
   }
 }
