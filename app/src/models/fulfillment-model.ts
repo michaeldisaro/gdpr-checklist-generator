@@ -3,5 +3,5 @@ export default class FulfillmentModel {
 
   text: string = '';
 
-  parentUiIds: number[] = [];
+  parentUiIds: string[] = [];
 }

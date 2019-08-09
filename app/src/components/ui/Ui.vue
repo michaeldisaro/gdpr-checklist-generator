@@ -1,10 +1,9 @@
 <template>
   <div>
-    <component :is="type" v-bind:id="uiId" v-bind:question="question"
-               v-bind:nested="nested" v-bind:fulfillments="fulfillments"/>
+    <component :is="type" v-bind:question="question"/>
     <div class="nested">
       <template v-for="q in nested">
-        <Ui v-bind:question="q"/>
+        <Ui v-bind:key="q.id" v-bind:question="q"/>
       </template>
     </div>
   </div>

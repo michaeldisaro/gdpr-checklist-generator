@@ -1,32 +1,22 @@
 import { Component, Prop, Vue } from 'vue-property-decorator';
 import AnswerModel from '@/models/answer-model';
 import QuestionModel from '@/models/question-model';
-import FulfillmentModel from '@/models/fulfillment-model';
-import { getModule } from 'vuex-module-decorators';
-import AppStore from '@/store/app-store';
 
-const appStore = getModule(AppStore);
+const md5 = require('md5');
 
 @Component
 export default class RadioInput extends Vue {
   @Prop() question!: QuestionModel;
 
-  @Prop() nested!: QuestionModel[];
-
-  @Prop() fulfillments!: FulfillmentModel[];
+  uiId: string = md5(Math.random() * (999999 - 111111) + 111111);
 
   selected: number = -1;
 
   test(): void {
     const answer: AnswerModel = this.question.answers[this.selected];
-    Object.keys(this.nested).forEach((k) => {
-      Vue.delete(this.nested, k);
-    });
-    Object.values(this.fulfillments).forEach((f) => {
-      this.$parent.$emit('fulfillmentRemoved', f);
-    });
-    if (answer.question) Vue.set(this.nested, answer.question, appStore.quiz[answer.question]);
+    this.$parent.$emit('nestedClear');
+    this.$parent.$emit('fulfillmentClear');
+    if (answer.question) this.$parent.$emit('nestedAdded', answer.question);
     if (answer.fulfillment) this.$parent.$emit('fulfillmentAdded', answer.fulfillment);
-
   }
 }
