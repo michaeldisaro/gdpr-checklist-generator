@@ -5,8 +5,10 @@
       <h1>Easy GDPR Checklist</h1>
     </v-app-bar>
     <v-content class="mt-12 pa-10">
-      <Quiz/>
-      <Checklist/>
+      <v-row>
+        <v-col cols="6"><Quiz/></v-col>
+        <v-col cols="6"><Checklist/></v-col>
+      </v-row>
     </v-content>
   </v-app>
 </template>
