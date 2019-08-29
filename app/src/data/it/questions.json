@@ -1,5 +1,20 @@
 {
-    "1": "Azienda tratta dati personali?",
-    "2": "Quanti dipendenti ha l'azienda?",
-    "3": "Ci sono gatti?"
+    "1": "La vostra azienda raccoglie dati personali?", 
+    "2": "La vostra azienda raccoglie dati di minori?", 
+    "3": "La vostra azienda raccoglie dati sensibili?", 
+    "4": "La vostra azienda raccoglie dati relativi a condanne penali e reati?", 
+    "5": "I dati raccolti sono archiviati?", 
+    "6": "La vostra azienda esegue altri trattamenti sui dati raccolti?",
+    "7": "Chi è il titolare del trattamento?", 
+    "8": "Quanti dipendenti ha l'azienda?", 
+    "9": "Il trattamento dei dati personali è continuativo?", 
+    "10": "Il trattamento dei dati personali può presentare un rischio per i diritti e le libertà dell'utente?", 
+    "11": "Il trattamento dei dati raccolti comporta decisioni che hanno effetti giuridici o incidono significativamente sull'interessato?", 
+    "12": "Effetuate il trattamento su larga scala di dati sensibili e/o di condanne penali e reati?",  
+    "13": "Effetuate sorveglianza sistematica su larga scala di un'area accessibile al pubblico?",
+    "98": "Intendete trasferire i dati verso altri paesi?",  
+    "97": "La vostra azienda richiede l'identificazione degli utenti?",
+    "96": "La vostra azienda esegue la profilazione degli utenti?",
+    "95": "La vostra azienda ha ricevuto dati personali da un'altra azienda?",
+    "99": "I dati raccolti sono pseudonimizzati?"
 }

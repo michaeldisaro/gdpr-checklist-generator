@@ -1,5 +1,8 @@
 {
-    "1": "Redigere il trattamento dei dati personali",
-    "2": "Nominare un DPO",
-    "3": "Redigere trattamento croccantini."
+    "1": "La \"raccolta\" dei dati è il primo trattamento in assoluto. Nel caso di \"legittimo interesse\" non è richiesto alcun consenso.",
+    "2": "Redigere l'informativa relativa ai dati raccolti e ricordate di rispondere alle domande: \"quali, quando, perché, dove e chi\".",
+    "3": "I dati di minori possono essere raccolti per legittimo interesse solo dai 16 anni in su. Sotto i 16 anni, serve il consenso dei genitori.",
+    "4": "I dati sensibili possono essere raccolti e trattati solo a patto di rispettare alcune condizioni. La più semplice da rispettare è chiedere il consenso all'interessato.",
+    "6": "I dati relativi a reati e condanne possono essere raccolti e trattati solo sotto il controllo della pubblica autorità o se permesso dal diritto dello stato membro a patto di garantire adeguate garanzie per i diritti degli interessati.",
+    "7": ""
 }

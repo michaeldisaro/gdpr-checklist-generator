@@ -2,7 +2,7 @@
   <div class="text">
     <h3>{{question.text}}</h3>
     <span>
-      <input type="text" v-model="userText" v-on:keyup="test"/>
+      <v-text-field v-model="userText" v-on:keyup="test"/>
     </span>
   </div>
 </template>

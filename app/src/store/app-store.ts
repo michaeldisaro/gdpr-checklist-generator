@@ -5,6 +5,7 @@ import {
 import QuestionModel from '@/models/question-model';
 import Store from './store';
 import FulfillmentModel from '@/models/fulfillment-model';
+import FulfillmentMutationPayload from '@/interfaces/FulfillmentMutationPayload';
 
 @Module({
   dynamic: true,
@@ -31,22 +32,28 @@ export default class AppStore extends VuexModule {
   }
 
   @Mutation
-  addFulfillmentMutation(fulfillment: FulfillmentModel) {
-    if (this.fulfillments[fulfillment.id]
-      && this.fulfillments[fulfillment.id].parentUiIds.indexOf(fulfillment.parentUiIds[0]) < 0) {
-      this.fulfillments[fulfillment.id].parentUiIds.push(fulfillment.parentUiIds[0]);
-    } else {
+  addFulfillmentMutation(p: any) {
+    let fulfillment: FulfillmentModel = p.fulfillment;
+    let uiId: string = p.uiId;
+    if (!this.fulfillments[fulfillment.id]) {
       Vue.set(this.fulfillments, fulfillment.id, fulfillment);
+    }
+    if (this.fulfillments[fulfillment.id].parentUiIds.indexOf(uiId) < 0) {
+      this.fulfillments[fulfillment.id].parentUiIds.push(uiId);
     }
   }
 
   @Mutation
-  removeFulfillmentMutation(fulfillment: FulfillmentModel) {
-    const parents: string[] = this.fulfillments[fulfillment.id].parentUiIds;
-    this.fulfillments[fulfillment.id].parentUiIds
-      .splice(parents.indexOf(fulfillment.parentUiIds[0]), 1);
-    if (this.fulfillments[fulfillment.id].parentUiIds.length <= 0) {
-      Vue.delete(this.fulfillments, fulfillment.id);
+  removeFulfillmentMutation(p: any) {
+    let fulfillment: FulfillmentModel = p.fulfillment;
+    let uiId: string = p.uiId;
+    if(this.fulfillments[fulfillment.id]) {
+      const parents: string[] = this.fulfillments[fulfillment.id].parentUiIds;
+      this.fulfillments[fulfillment.id].parentUiIds
+        .splice(parents.indexOf(uiId), 1);
+      if (this.fulfillments[fulfillment.id].parentUiIds.length <= 0) {
+        Vue.delete(this.fulfillments, fulfillment.id);
+      }
     }
   }
 
@@ -56,12 +63,12 @@ export default class AppStore extends VuexModule {
   }
 
   @Action
-  addFulfillment(fulfillment: FulfillmentModel) {
-    this.context.commit('addFulfillmentMutation', fulfillment);
+  addFulfillment(p: FulfillmentMutationPayload) {
+    this.context.commit('addFulfillmentMutation', p);
   }
 
   @Action
-  removeFulfillment(fulfillment: FulfillmentModel) {
-    this.context.commit('removeFulfillmentMutation', fulfillment);
+  removeFulfillment(p: FulfillmentMutationPayload) {
+    this.context.commit('removeFulfillmentMutation', p);
   }
 }

@@ -16,8 +16,8 @@ export default class TextInput extends Vue {
   test(): void {
     for (let idx = 0; idx < this.question.answers.length; idx += 1) {
       const answer = this.question.answers[idx];
-      const check = (this.userText || '0') + answer.value;
-      if (safeEval(check)) {
+      const check = this.userText + answer.value;
+      if (this.userText && safeEval(check)) {
         if (answer.question) this.$parent.$emit('nestedAdded', answer.question);
         if (answer.fulfillment) this.$parent.$emit('fulfillmentAdded', answer.fulfillment);
       } else {

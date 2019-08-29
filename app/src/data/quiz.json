@@ -1,43 +1,53 @@
 [
     {
-        "type": "Radio",
+        "type": "Checkbox",
         "question": 1,
         "answers": [
             {
-                "id": 1,
-                "fulfillment": 1,
-                "question": 3
+                "fulfillment": 1
             },
             {
-                "id": 2
+                "fulfillment": 2
+            }
+        ]
+    },
+    {
+        "type": "Checkbox",
+        "question": 2,
+        "answers": [
+            {
+                "fulfillment": 1
+            },
+            {
+                "fulfillment": 2
+            },
+            {
+                "fulfillment": 3
+            }
+        ]
+    },
+    {
+        "type": "Checkbox",
+        "question": 3,
+        "answers": [
+            {
+                "fulfillment": 1
+            },
+            {
+                "fulfillment": 2
+            },
+            {
+                "fulfillment": 4
             }
         ]
     },
     {
         "type": "Text",
-        "question": 2,
+        "question": 8,
         "answers": [
             {
-                "value": ">=1",
-                "fulfillment": 2,
-                "question": 3
-            }
-        ]
-    },
-    {
-        "type": "Radio",
-        "question": 3,
-        "dependsOn": [
-            1,
-            2
-        ],
-        "answers": [
-            {
-                "id": 1,
-                "fulfillment": 3
-            },
-            {
-                "id": 2
+                "value": ">=250",
+                "fulfillment": 7
             }
         ]
     }

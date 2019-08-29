@@ -4,7 +4,9 @@ import AppStore from '@/store/app-store';
 import QuestionModel from '@/models/question-model';
 import RadioInput from '@/components/ui/types/radio/Radio.vue';
 import TextInput from '@/components/ui/types/text/Text.vue';
+import CheckboxInput from '@/components/ui/types/checkbox/Checkbox.vue';
 import FulfillmentModel from '@/models/fulfillment-model';
+import FulfillmentMutationPayload from '@/interfaces/FulfillmentMutationPayload';
 
 const md5 = require('md5');
 
@@ -14,6 +16,7 @@ const appStore = getModule(AppStore);
   components: {
     RadioInput,
     TextInput,
+    CheckboxInput,
   },
 })
 export default class Ui extends Vue {
@@ -29,6 +32,7 @@ export default class Ui extends Vue {
     const types = {
       Radio: RadioInput,
       Text: TextInput,
+      Checkbox: CheckboxInput,
     } as { [key: string]: any };
     return types[this.question.type];
   }
@@ -62,29 +66,46 @@ export default class Ui extends Vue {
   fulfillmentClear() {
     // console.log(`clearing fulfillments`);
     Object.values(this.fulfillments).forEach((v) => {
-      appStore.removeFulfillment(this.fulfillments[v.id]);
+      let p: FulfillmentMutationPayload = {
+        fulfillment: this.fulfillments[v.id],
+        uiId: this.uiId
+      };
+      appStore.removeFulfillment(p);
       Vue.delete(this.fulfillments, v.id);
     });
   }
 
   fulfillmentAdded(f: FulfillmentModel): void {
     // console.log(`adding fulfillment ${f}`);
-    f.parentUiIds.push(this.uiId);
     Vue.set(this.fulfillments, f.id, f);
-    appStore.addFulfillment(f);
+    let p: FulfillmentMutationPayload = {
+      fulfillment: f,
+      uiId: this.uiId
+    };
+    appStore.addFulfillment(p);
   }
 
   fulfillmentRemoved(f: FulfillmentModel): void {
     // console.log(`removing fulfillment ${f}`);
-    appStore.removeFulfillment(f);
-    Vue.delete(this.fulfillments, f.id);
+    if(this.fulfillments.hasOwnProperty(f.id)){
+      let p: FulfillmentMutationPayload = {
+        fulfillment: f,
+        uiId: this.uiId
+      };
+      appStore.removeFulfillment(p);
+      Vue.delete(this.fulfillments, f.id);
+    }
   }
 
   beforeDestroy() {
     // console.log(`destroying ${this.uiId}`);
     Object.values(this.fulfillments).forEach((v: FulfillmentModel) => {
       // console.log(`removing fulfillment ${v.id}`);
-      appStore.removeFulfillment(v);
+      let p: FulfillmentMutationPayload = {
+        fulfillment: v,
+        uiId: this.uiId
+      };
+      appStore.removeFulfillment(p);
       Vue.delete(this.fulfillments, v.id);
     });
   }
