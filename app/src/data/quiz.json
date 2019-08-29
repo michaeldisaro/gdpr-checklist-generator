@@ -8,19 +8,50 @@
             },
             {
                 "fulfillment": 2
+            },
+            {
+                "question": 2
+            },
+            {
+                "question": 3
+            },
+            {
+                "question": 4
+            },
+            {
+                "question": 5
+            },
+            {
+                "question": 6
+            },
+            {
+                "question": 7
+            },
+            {
+                "question": 8
+            },
+            {
+                "question": 9
+            },
+            {
+                "question": 10
+            },
+            {
+                "question": 11
+            },
+            {
+                "question": 12
+            },
+            {
+                "question": 13
             }
         ]
     },
     {
         "type": "Checkbox",
         "question": 2,
+        "dependsOn" : 1,
         "answers": [
-            {
-                "fulfillment": 1
-            },
-            {
-                "fulfillment": 2
-            },
             {
                 "fulfillment": 3
             }
@@ -29,25 +60,117 @@
     {
         "type": "Checkbox",
         "question": 3,
+        "dependsOn" : 1,
         "answers": [
             {
-                "fulfillment": 1
-            },
-            {
-                "fulfillment": 2
-            },
-            {
                 "fulfillment": 4
+            },
+            {
+                "fulfillment": 9
+            }
+        ]
+    },
+    {
+        "type": "Checkbox",
+        "question": 4,
+        "dependsOn" : 1,
+        "answers": [
+            {
+                "fulfillment": 5
+            },
+            {
+                "fulfillment": 9
+            }
+        ]
+    },
+    {
+        "type": "Checkbox",
+        "question": 5,
+        "dependsOn" : 1,
+        "answers": [
+            {
+                "fulfillment": 6
+            }
+        ]
+    },
+    {
+        "type": "Checkbox",
+        "question": 6,
+        "dependsOn" : 1,
+        "answers": [
+            {
+                "fulfillment": 7
+            }
+        ]
+    },
+    {
+        "type": "Checkbox",
+        "question": 7,
+        "dependsOn" : 1,
+        "answers": [
+            {
+                "fulfillment": 8
             }
         ]
     },
     {
         "type": "Text",
         "question": 8,
+        "dependsOn" : 1,
         "answers": [
             {
                 "value": ">=250",
-                "fulfillment": 7
+                "fulfillment": 9
+            }
+        ]
+    },
+    {
+        "type": "Checkbox",
+        "question": 9,
+        "dependsOn" : 1,
+        "answers": [
+            {
+                "fulfillment": 9
+            }
+        ]
+    },
+    {
+        "type": "Checkbox",
+        "question": 10,
+        "dependsOn" : 1,
+        "answers": [
+            {
+                "fulfillment": 9
+            }
+        ]
+    },
+    {
+        "type": "Checkbox",
+        "question": 11,
+        "dependsOn" : 1,
+        "answers": [
+            {
+                "fulfillment": 10
+            }
+        ]
+    },
+    {
+        "type": "Checkbox",
+        "question": 12,
+        "dependsOn" : 1,
+        "answers": [
+            {
+                "fulfillment": 10
+            }
+        ]
+    },
+    {
+        "type": "Checkbox",
+        "question": 13,
+        "dependsOn" : 1,
+        "answers": [
+            {
+                "fulfillment": 10
             }
         ]
     }

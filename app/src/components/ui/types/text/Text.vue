@@ -1,9 +1,13 @@
 <template>
   <div class="text">
-    <h3>{{question.text}}</h3>
-    <span>
-      <v-text-field v-model="userText" v-on:keyup="test"/>
-    </span>
+    <v-row align="center">
+      <v-col cols="10">{{question.text}}</v-col>
+      <v-col cols="2">
+        <span class="shrink ml-2 mt-0">
+          <v-text-field v-model="userText" v-on:keyup="test"/>
+        </span>
+      </v-col>
+    </v-row>
   </div>
 </template>
 

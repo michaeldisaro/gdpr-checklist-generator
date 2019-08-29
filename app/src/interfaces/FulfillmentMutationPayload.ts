@@ -1,6 +1,6 @@
 import FulfillmentModel from "@/models/fulfillment-model";
 
-interface FulfillmentMutationPayload {
+export default interface FulfillmentMutationPayload {
   fulfillment: FulfillmentModel;
   uiId: string;
 }
