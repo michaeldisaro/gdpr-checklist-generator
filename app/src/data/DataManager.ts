@@ -17,7 +17,7 @@ export default class DataManager {
       q.id = data.question;
       q.type = data.type;
       q.text = this.getQuestionText(data.question);
-      q.dependsOn = data.dependsOn || [];
+      q.dependsOn = data.dependsOn || [] as number[];
       Object.values(data.answers).forEach((answer) => {
         const a = new AnswerModel();
         a.id = answer.id || 0;
