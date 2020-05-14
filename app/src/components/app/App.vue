@@ -1,14 +1,18 @@
 <template>
-  <v-app id="app" style="background-color:#003399">
-    <v-app-bar class="pa-1" style="background-color:#003399" height="72px" fixed>
-      <v-img src="/app/public/logo.png" class="mr-5" max-width="64px" max-height="64px" contain/>
-      <h1>Easy GDPR Checklist</h1>
+  <v-app id="app">
+    <v-app-bar height="116px" fixed>
+      <v-img src="logo.png"
+             class="logo"
+             max-width="64px"
+             max-height="64px"
+             contain/>
+      <h1>GDPR Checklist</h1>
     </v-app-bar>
-    <v-content class="mt-12 pa-10">
+    <v-content>
       <v-row>
-        <v-col cols="12" lg="6"><Quiz/></v-col>
-        <v-col cols="12" lg="6"><Checklist/></v-col>
+        <v-col cols="5"><Quiz/></v-col>
       </v-row>
+      <Checklist/>
     </v-content>
   </v-app>
 </template>

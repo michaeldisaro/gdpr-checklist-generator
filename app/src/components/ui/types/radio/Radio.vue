@@ -2,7 +2,7 @@
   <div class="radio">
     <v-row align="center">
       {{question.text}}
-      <v-radio-group class="shrink ml-2 ml-5" v-model="selected" v-on:change="test">
+      <v-radio-group class="shrink" v-model="selected" v-on:change="test">
         <template v-for="answer in question.answers">
           <v-radio
             v-bind:key="uiId+'-'+answer.id"
