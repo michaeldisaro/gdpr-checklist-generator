@@ -13,6 +13,7 @@ const md5 = require('md5');
 const appStore = getModule(AppStore);
 
 @Component({
+  name : 'Ui',
   components: {
     RadioInput,
     TextInput,
