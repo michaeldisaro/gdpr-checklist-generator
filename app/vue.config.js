@@ -1,4 +1,4 @@
 module.exports = {
-  publicPath: '/deploy-gdpr-checklist-generator/',
+  publicPath: '/gdpr-checklist-generator/',
   outputDir: '../docs'
 }
